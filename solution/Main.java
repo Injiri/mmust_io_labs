@@ -61,20 +61,20 @@ public static ArrayList<Slide> combineVerticalOverlaps(String dataset){
 	ArrayList<Slide> slides = new ArrayList<Slide>();
 	ArrayList<Pictures> vertical_pics = new ArrayList<>();
 
-	for (Picture pic : pics) {
-			if (pic.horizontal) {
-				slides.add(new Slide(pic));
+	for (Picture pic : Pictures) {
+			if (pic.hlis_horizontal) {
+				des.add(new Slide(pic));
 			} else {
-				verticals.add(pic);
+				vertical_pics.add(pic);
 			}
 		}
 		
-		for (int i = 0; i < verticals.size()-1; i+=2) {
-			Picture pic = verticals.get(i);
+		for (int i = 0; i < vertical_pics.size()-1; i+=2) {
+			Picture pic = vertical_pics.get(i);
 			int smallestIntersect = Integer.MAX_VALUE;
 			int smallestIntersectIdx = i+1;
 			
-			for (int j = i+1; j < verticals.size(); j++) {
+			for (int j = i+1; j < vertical_pics.ize(); j++) {
 				Pic pic2 = verticals.get(j);
 				int intersectElements = Helper.getIntersectCount(pic.tags, pic2.tags);
 				if (intersectElements < smallestIntersect) {
@@ -85,8 +85,8 @@ public static ArrayList<Slide> combineVerticalOverlaps(String dataset){
 					if (intersectElements == 0) { break; }
 			}
 			
-			Collections.swap(verticals, i+1, smallestIntersectIdx);
-			slides.add(new Slide(verticals.get(i), verticals.get(i+1)));
+			Collections.swap(vertical_pics, i+1, smallestIntersectIdx);
+			slides.add(new Slide(vertical_pics.get(i), vertical_pics.get(i+1)));
 		}
 		
 		return slides;	
