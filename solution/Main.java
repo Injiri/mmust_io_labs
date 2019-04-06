@@ -55,5 +55,14 @@ try{
 
 }
 
+//combine vertical pics so that they share the same tag
+public static ArrayList<Slide> combineVerticalOverlaps(dataset){
+	ArrayList<Picture> pictures = readInput(dataset);
+	ArrayList<Slide> slides = new ArrayList<Slide>();
+	ArrayList<Pictures> vertical_pics = new ArrayList<>();
+
+	fot(Picture pic : pictures){}i
+
+}
 
 }
