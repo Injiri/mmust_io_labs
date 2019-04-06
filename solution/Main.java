@@ -56,13 +56,40 @@ try{
 }
 
 //combine vertical pics so that they share the same tag
-public static ArrayList<Slide> combineVerticalOverlaps(dataset){
+public static ArrayList<Slide> combineVerticalOverlaps(String dataset){
 	ArrayList<Picture> pictures = readInput(dataset);
 	ArrayList<Slide> slides = new ArrayList<Slide>();
 	ArrayList<Pictures> vertical_pics = new ArrayList<>();
 
-	fot(Picture pic : pictures){}i
-
+	for (Picture pic : pics) {
+			if (pic.horizontal) {
+				slides.add(new Slide(pic));
+			} else {
+				verticals.add(pic);
+			}
+		}
+		
+		for (int i = 0; i < verticals.size()-1; i+=2) {
+			Picture pic = verticals.get(i);
+			int smallestIntersect = Integer.MAX_VALUE;
+			int smallestIntersectIdx = i+1;
+			
+			for (int j = i+1; j < verticals.size(); j++) {
+				Pic pic2 = verticals.get(j);
+				int intersectElements = Helper.getIntersectCount(pic.tags, pic2.tags);
+				if (intersectElements < smallestIntersect) {
+					smallestIntersect = intersectElements;
+					smallestIntersectIdx = j;
+				}
+				//if found a pic with zero overlap ,
+					if (intersectElements == 0) { break; }
+			}
+			
+			Collections.swap(verticals, i+1, smallestIntersectIdx);
+			slides.add(new Slide(verticals.get(i), verticals.get(i+1)));
+		}
+		
+		return slides;	
 }
 
-}
+
